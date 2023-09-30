@@ -185,7 +185,7 @@
 
 
         calcBtn.onclick = () => {
-            if(inputHeight || inputWeight === null){
+            if(inputHeight.value === "" || inputWeight.value === ""){
                 window.alert("You have to fill weight and height first.")
             }else{
             const bmi = 703 * inputWeight.valueAsNumber / inputHeight.valueAsNumber ** 2;
