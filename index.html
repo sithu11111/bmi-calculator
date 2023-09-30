@@ -202,9 +202,14 @@
             clearBtn.onclick = clearAll;
 
             storeBtn.onclick = () => {
-            recordLists.innerHTML += `<li> ${inputWeight.value} lb and ${inputHeight.value} in = ${output.innerHTML}</li>`;
+                if(inputHeight.value === "" || inputWeight.value === ""){
+                window.alert("You have to fill weight and height first.")
+            }else{
+                recordLists.innerHTML += `<li> ${inputWeight.value} lb and ${inputHeight.value} in = ${output.innerHTML}</li>`;
 
-            clearAll()
+                clearAll();
+            }
+            
         };
 
     </script>
