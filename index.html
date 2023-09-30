@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+    <style>
+        *{
+            
+            box-sizing: border-box;
+            
+        }
+
+        body{
+            background-color: #e8dba2;
+        }
+
+        #status {
+            display: flex;
+            /* flex-wrap: wrap; */
+            margin: auto;
+            width: 500px;
+            height: 170px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #innerStatus {
+            padding: 20px;
+            margin-right: 10px;
+            border: #fff  solid 2px;
+            border-radius: 20px;
+            background-color: transparent;
+        }
+
+        #form {
+
+            display: block;
+            width: 490px;
+            margin: auto;
+            margin-bottom: 20px;
+
+            border: 3px solid #000;
+            border-radius: 40px;
+            padding: 50px;
+            
+        }
+
+        #inputWeight, #inputHeight {
+            padding-left: 75px;
+            margin-left: 50px;
+            width: 200px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        #calcBtn{
+            height: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100px;
+            margin-right: 30px;
+
+            margin-left: 220px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #2921c1;
+            color: white;
+        }
+         
+        #output {
+            display: inline-block;
+            width: 200px;
+            margin: auto;
+        }
+
+        .btn {
+            display: flex;
+            justify-items: flex-end;
+            align-items: center;
+            justify-content: end;
+            margin-right: 15%;
+        }
+
+        #storeBtn {
+            height: 35px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 80px;
+            margin-right: 10px;
+
+            /* margin-left: 220px; */
+            /* margin-bottom: 20px; */
+            border-radius: 10px;
+            background-color: #e69225;
+            color: white;
+        }
+
+        #clearBtn {
+            height: 35px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 80px;
+            margin-right: 10px;
+
+            /* margin-left: 220px; */
+            /* margin-bottom: 20px; */
+            border-radius: 10px;
+            background-color: #c12131;
+            color: white;
+        }
+
+        #recordLists {
+            display: block;
+            width: 400px;
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- BMI status -->
+    <div id="status">
+        <div id="innerStatus" style="background-color: yellow;">
+            <h3>Under Weight</h3>
+            <h3>&le; 18</h3>
+        </div>
+        <div id="innerStatus" style="background-color: greenyellow;">
+            <h3>Normal Weight</h3>
+            <h3>18.5 - 24.9</h3>
+        </div>
+        <div id="innerStatus" style="background-color: orange;">
+            <h3>Over Weight</h3>
+            <h3>25 - 39.9</h3>
+        </div>
+        <div id="innerStatus" style="background-color: red;">
+            <h3>Obese</h3>
+            <h3>&gE; 40</h3>
+        </div>
+    </div>
+
+
+            <!-- form  -->
+        <div id="form">
+                <h1>BMI calculator</h1>
+            <div>
+                <h3>Weight :
+                <input id="inputWeight" type="number" placeholder="Pounds(lbs)"></h3>
+                
+            </div>
+        
+            <div>
+                <h3>Height :
+                <input id="inputHeight" type="number" placeholder="Inches"></h3>
+                
+            </div>
+        
+            <button id="calcBtn">calculate</button>
+        
+            <h3>Your BMI : <span id="output"></span></h3>
+                <div class="btn">
+                    <button id="storeBtn">Store</button>
+                    <button id="clearBtn">Clear</button>
+                </div>
+        
+        </div>
+            <ul id="recordLists">
+            </ul>
+
+
+            
+
+     
+    <script>
+
+        const inputHeight = document.getElementById("inputHeight");
+        const inputWeight = document.getElementById("inputWeight");
+        const calcBtn = document.getElementById("calcBtn");
+        const output = document.getElementById("output");
+        const storeBtn = document.getElementById("storeBtn");
+        const clearBtn = document.getElementById("clearBtn");
+        const recordLists = document.getElementById("recordLists");
+
+
+
+        calcBtn.onclick = () => {
+            if(inputHeight || inputWeight === null){
+                window.alert("You have to fill weight and height first.")
+            }else{
+            const bmi = 703 * inputWeight.valueAsNumber / inputHeight.valueAsNumber ** 2;
+            output.innerHTML = `${bmi.toFixed(2)} lbm<sup>-2</sup>`;
+            }
+        };
+
+            const clearAll = () => {
+            output.innerHTML = null;
+            inputWeight.value = null;
+            inputHeight.value = null;
+        }
+
+            clearBtn.onclick = clearAll;
+
+            storeBtn.onclick = () => {
+            recordLists.innerHTML += `<li> ${inputWeight.value} lb and ${inputHeight.value} in = ${output.innerHTML}</li>`;
+
+            clearAll()
+        };
+
+    </script>
+    
+</body>
+</html>
